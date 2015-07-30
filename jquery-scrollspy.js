@@ -9,14 +9,14 @@
 
         scrollspy: function(options) {
 
-            // default options of Scollspy
+            // default options for Scollspy
             var defaults = {
-                min: 0,
-                max: 0,
-                mode: 'vertical',
-                namespace: 'scrollspy',
                 buffer: 0,
                 container: window,
+                max: 0,
+                min: 0,
+                mode: 'vertical',
+                namespace: 'scrollspy',
                 onEnter: options.onEnter ? options.onEnter : [],
                 onLeave: options.onLeave ? options.onLeave : [],
                 onTick: options.onTick ? options.onTick : []
@@ -39,10 +39,13 @@
                     // cache the jQuery object
                     $element = $(self),
 
+                    // count the number of times a container is entered
                     enters = 0,
 
+                    // determine if the scroll is with inside the container
                     inside = false,
 
+                    // count the number of times a container is left
                     leaves = 0;
 
                 // create a scroll listener for the container
