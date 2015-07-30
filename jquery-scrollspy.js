@@ -48,20 +48,21 @@
 
                 // create a scroll listener for the container
                 $container.on('scroll.' + options.namespace, function() {
-                    // cache the jQuery object
-                    var $this = $(this);
 
-                    // create a position object literal
-                    var position = {
+                    // cache the jQuery object
+                    var $this = $(this),
+
+                        // create a position object literal
+                        position = {
                             top: $this.scrollTop(),
                             left: $this.scrollLeft()
                         },
 
-                        xAndY = isVertical ? position.top + buffer : position.left + buffer,
-
                         max = $.isFunction(options.max) ? options.max() : options.max,
 
-                        min = $.isFunction(options.min) ? options.min() : options.min;
+                        min = $.isFunction(options.min) ? options.min() : options.min,
+
+                        xAndY = isVertical ? position.top + buffer : position.left + buffer;
 
                     if (max === 0) {
                         max = isVertical ? $container.height() : $container.outerWidth() + $element.outerWidth();
