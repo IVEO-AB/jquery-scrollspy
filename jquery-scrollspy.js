@@ -21,6 +21,7 @@
                 onTick: options.onTick ? options.onTick : []
             };
 
+            // override the default options with those passed
             options = $.extend({}, defaults, options);
 
             return this.each(function() {
@@ -39,10 +40,12 @@
                     mode = options.mode;
 
 
-                /* add listener to container */
-                $container.on('scroll.' + options.namespace, function(e) {
+                // create a scroll listener for the container
+                $container.on('scroll.' + options.namespace, function(event) {
                     // cache the jQuery object
                     var $this = $(this);
+
+                    // create a position object literal
                     var position = {
                         top: $this.scrollTop(),
                         left: $this.scrollLeft()
@@ -52,12 +55,12 @@
                     var max = options.max;
                     var min = options.min;
 
-                    /* fix max */
+                    // fix the max
                     if ($.isFunction(options.max)) {
                         max = options.max();
                     }
 
-                    /* fix max */
+                    // fix the min
                     if ($.isFunction(options.min)) {
                         min = options.min();
                     }
@@ -66,39 +69,45 @@
                         max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $element.outerWidth();
                     }
 
-                    /* if we have reached the minimum bound but are below the max ... */
+                    // if we have reached the minimum bound, though are below the max
                     if (xy >= min && xy <= max) {
-                        /* trigger enter event */
+
+                        // trigger the 'scrollEnter' event
                         if (!inside) {
+
                             inside = true;
                             enters++;
 
-                            /* fire enter event */
+                            // trigger the 'scrollEnter' event
                             $element.trigger('scrollEnter', {
                                 position: position
                             });
+
                             if ($.isFunction(options.onEnter)) {
                                 options.onEnter(self, position);
                             }
 
                         }
 
-                        /* trigger tick event */
+                        // trigger the 'scrollTick' event
                         $element.trigger('scrollTick', {
                             position: position,
                             inside: inside,
                             enters: enters,
                             leaves: leaves
                         });
+
                         if ($.isFunction(options.onTick)) {
                             options.onTick(self, position, inside, enters, leaves);
                         }
+
                     } else {
 
                         if (inside) {
                             inside = false;
                             leaves++;
-                            /* trigger leave event */
+
+                            // trigger the 'scrollLeave' event
                             $element.trigger('scrollLeave', {
                                 position: position,
                                 leaves: leaves
@@ -108,6 +117,7 @@
                                 options.onLeave(self, position);
                             }
                         }
+
                     }
                 });
 
