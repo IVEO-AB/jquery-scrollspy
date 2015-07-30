@@ -47,23 +47,12 @@
 
                     // create a position object literal
                     var position = {
-                        top: $this.scrollTop(),
-                        left: $this.scrollLeft()
-                    };
-
-                    var xy = (mode.toUpperCase() === 'VERTICAL') ? position.top + buffer : position.left + buffer;
-                    var max = options.max;
-                    var min = options.min;
-
-                    // fix the max
-                    if ($.isFunction(options.max)) {
-                        max = options.max();
-                    }
-
-                    // fix the min
-                    if ($.isFunction(options.min)) {
-                        min = options.min();
-                    }
+                            top: $this.scrollTop(),
+                            left: $this.scrollLeft()
+                        },
+                        xy = (mode.toUpperCase() === 'VERTICAL') ? position.top + buffer : position.left + buffer,
+                        max = $.isFunction(options.max) ? options.max() : options.max,
+                        min = $.isFunction(options.min) ? options.min() : options.min;
 
                     if (max === 0) {
                         max = (mode.toUpperCase() === 'VERTICAL') ? $container.height() : $container.outerWidth() + $element.outerWidth();
