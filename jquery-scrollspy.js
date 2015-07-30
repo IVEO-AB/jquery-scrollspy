@@ -6,6 +6,7 @@
 ; (function($, window, document, undefined) {
 
     $.fn.extend({
+
         scrollspy: function(options) {
 
             // default options of Scollspy
@@ -27,6 +28,7 @@
             // cache the jQuery object
             var $container = $(options.container),
 
+                // check if the mode is set to VERTICAL/vertical
                 isVertical = options.mode.toUpperCase() === 'VERTICAL';
 
             return this.each(function() {
