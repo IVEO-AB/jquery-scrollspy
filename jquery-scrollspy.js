@@ -41,7 +41,7 @@
 
 
                 // create a scroll listener for the container
-                $container.on('scroll.' + options.namespace, function(event) {
+                $container.on('scroll.' + options.namespace, function() {
                     // cache the jQuery object
                     var $this = $(this);
 
@@ -51,7 +51,7 @@
                         left: $this.scrollLeft()
                     };
 
-                    var xy = (mode == 'vertical') ? position.top + buffer : position.left + buffer;
+                    var xy = (mode.toUpperCase() === 'VERTICAL') ? position.top + buffer : position.left + buffer;
                     var max = options.max;
                     var min = options.min;
 
@@ -66,7 +66,7 @@
                     }
 
                     if (max === 0) {
-                        max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $element.outerWidth();
+                        max = (mode.toUpperCase() === 'VERTICAL') ? $container.height() : $container.outerWidth() + $element.outerWidth();
                     }
 
                     // if we have reached the minimum bound, though are below the max
