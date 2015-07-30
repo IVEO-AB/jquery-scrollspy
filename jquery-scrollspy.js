@@ -40,7 +40,7 @@
 
 
                 /* add listener to container */
-                $container.bind('scroll.' + options.namespace, function(e) {
+                $container.on('scroll.' + options.namespace, function(e) {
                     // cache the jQuery object
                     var $this = $(this);
                     var position = {
