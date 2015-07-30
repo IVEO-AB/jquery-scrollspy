@@ -24,27 +24,24 @@
             // override the default options with those passed
             options = $.extend({}, defaults, options);
 
+            // cache the jQuery object
+            var $container = $(options.container),
+
+                isVertical = options.mode.toUpperCase() === 'VERTICAL';
+
             return this.each(function() {
 
-                // cache the jQuery object
-                var $container = $(options.container),
-
-                    // cache this
-                    self = this,
+                // cache this
+                var self = this,
 
                     // cache the jQuery object
                     $element = $(self),
-
-                    buffer = options.buffer,
 
                     enters = 0,
 
                     inside = false,
 
-                    isVertical = options.mode.toUpperCase() === 'VERTICAL',
-
                     leaves = 0;
-
 
                 // create a scroll listener for the container
                 $container.on('scroll.' + options.namespace, function() {
@@ -62,7 +59,7 @@
 
                         min = $.isFunction(options.min) ? options.min() : options.min,
 
-                        xAndY = isVertical ? position.top + buffer : position.left + buffer;
+                        xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
 
                     if (max === 0) {
                         max = isVertical ? $container.height() : $container.outerWidth() + $element.outerWidth();
