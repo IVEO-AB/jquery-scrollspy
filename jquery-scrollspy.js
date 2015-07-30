@@ -8,6 +8,7 @@
     $.fn.extend({
         scrollspy: function(options) {
 
+            // default options of Scollspy
             var defaults = {
                 min: 0,
                 max: 0,
@@ -24,37 +25,45 @@
 
             return this.each(function() {
 
-                var element = this;
-                var o = options;
-                var $container = $(o.container);
-                var mode = o.mode;
-                var buffer = o.buffer;
-                var enters = 0;
-                var leaves = 0;
-                var inside = false;
+                var $container = $(options.container),
+
+                    // cache this
+                    self = this,
+
+                    // cache the jQuery object
+                    $element = $(self),
+                    buffer = options.buffer,
+                    enters = 0,
+                    inside = false,
+                    leaves = 0,
+                    mode = options.mode;
+
 
                 /* add listener to container */
-                $container.bind('scroll.' + o.namespace, function(e) {
+                $container.bind('scroll.' + options.namespace, function(e) {
+                    // cache the jQuery object
+                    var $this = $(this);
                     var position = {
-                        top: $(this).scrollTop(),
-                        left: $(this).scrollLeft()
+                        top: $this.scrollTop(),
+                        left: $this.scrollLeft()
                     };
+
                     var xy = (mode == 'vertical') ? position.top + buffer : position.left + buffer;
-                    var max = o.max;
-                    var min = o.min;
+                    var max = options.max;
+                    var min = options.min;
 
                     /* fix max */
-                    if ($.isFunction(o.max)) {
-                        max = o.max();
+                    if ($.isFunction(options.max)) {
+                        max = options.max();
                     }
 
                     /* fix max */
-                    if ($.isFunction(o.min)) {
-                        min = o.min();
+                    if ($.isFunction(options.min)) {
+                        min = options.min();
                     }
 
                     if (max === 0) {
-                        max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $(element).outerWidth();
+                        max = (mode == 'vertical') ? $container.height() : $container.outerWidth() + $element.outerWidth();
                     }
 
                     /* if we have reached the minimum bound but are below the max ... */
@@ -65,24 +74,24 @@
                             enters++;
 
                             /* fire enter event */
-                            $(element).trigger('scrollEnter', {
+                            $element.trigger('scrollEnter', {
                                 position: position
                             });
-                            if ($.isFunction(o.onEnter)) {
-                                o.onEnter(element, position);
+                            if ($.isFunction(options.onEnter)) {
+                                options.onEnter(self, position);
                             }
 
                         }
 
                         /* trigger tick event */
-                        $(element).trigger('scrollTick', {
+                        $element.trigger('scrollTick', {
                             position: position,
                             inside: inside,
                             enters: enters,
                             leaves: leaves
                         });
-                        if ($.isFunction(o.onTick)) {
-                            o.onTick(element, position, inside, enters, leaves);
+                        if ($.isFunction(options.onTick)) {
+                            options.onTick(self, position, inside, enters, leaves);
                         }
                     } else {
 
@@ -90,13 +99,13 @@
                             inside = false;
                             leaves++;
                             /* trigger leave event */
-                            $(element).trigger('scrollLeave', {
+                            $element.trigger('scrollLeave', {
                                 position: position,
                                 leaves: leaves
                             });
 
-                            if ($.isFunction(o.onLeave)) {
-                                o.onLeave(element, position);
+                            if ($.isFunction(options.onLeave)) {
+                                options.onLeave(self, position);
                             }
                         }
                     }
