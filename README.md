@@ -1,3 +1,5 @@
+# NOTE: This is a new version scrollspy, which includes a ton of bug fixes and efficiency improvements.
+
 # jquery-scrollspy
 
 An adaptation of the Mootools Scrollspy ( http://davidwalsh.name/mootools-scrollspy ) plugin for jQuery
@@ -29,21 +31,23 @@ Or clone from:
 
 1. Insert the necessary elements in your document's `<head>` section, e.g.:
 
-        <script type='text/javascript' src='/javascripts/jquery.scrollspy.js'></script>
+        <script src='/assets/js/jquery.scrollspy.min.js'></script>
 
  Remember to include jquery.scrollspy.js *after* including the main jQuery library.
 
 2. Initialise scrollspy in your document.onload, e.g.:
 
-        <script type='text/javascript'>
+        <script>
 	        $(function() {
+                    var $nav = $('#nav');
+
         			$('#sticky-navigation').scrollspy({
-    					min: $('#nav').offset().top,
+    					min: $nav.offset().top,
     					onEnter: function(element, position) {
-    						$("#nav").addClass('fixed');
+    						$nav.addClass('fixed');
     					},
     					onLeave: function(element, position) {
-    						$("#nav").removeClass('fixed');
+    						$nav.removeClass('fixed');
     					}
         			});
         		});

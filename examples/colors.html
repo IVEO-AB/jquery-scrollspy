@@ -6,17 +6,10 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-      <![endif]-->
-
       <!-- Le styles -->
-      <link href="bootstrap.css" rel="stylesheet">
-      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-      <script src="../jquery-scrollspy.js"></script>
+      <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
 
-      <style type="text/css">
+      <style>
 
         /* Override some defaults */
         html, body {
@@ -70,32 +63,42 @@
               <div id="blue" class="color"><h2>The Blue Team</h2></div>
               <div id="green" class="color"><h2>The Green Team</h2></div>
               <div id="black" class="color"><h2>The Black Team</h2></div>
-              <script type="text/javascript">
-               $(document).ready(function() {
-                 $('.color').each(function(i) {
-                  var position = $(this).position();
-                  console.log(position);
-                  console.log('min: ' + position.top + ' / max: ' + parseInt(position.top + $(this).height()));
-                  $(this).scrollspy({
-                   min: position.top,
-                   max: position.top + $(this).height(),
-                   onEnter: function(element, position) {
-                    if(console) console.log('entering ' +  element.id);
-                    $("body").css('background-color', element.id);
-                  },
-                  onLeave: function(element, position) {
-                    if(console) console.log('leaving ' +  element.id);
-        					//	$('body').css('background-color','#eee');
-               }
-             });
-                });
-               });
-             </script>
+
            </div>
          </div>
        </div>
 
      </div> <!-- /container -->
+
+      <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+      <script src="../jquery-scrollspy.js"></script>
+
+      <script>
+          $(function() {
+              $('.color').each(function(i) {
+
+                  var position = $(this).position();
+                  console.log(position);
+                  console.log('min: ' + position.top + ' / max: ' + parseInt(position.top + $(this).height()));
+
+                  $(this).scrollspy({
+                      min: position.top,
+                      max: position.top + $(this).height(),
+                      onEnter: function(element, position) {
+                          if (console) {
+                              console.log('Entering ' + element.id);
+                          }
+                          $('body').css('background-color', element.id);
+                      },
+                      onLeave: function(element, position) {
+                          if (console) {
+                              console.log('leaving ' + element.id);
+                          }
+                      }
+                  });
+              });
+          });
+      </script>
 
    </body>
    </html>
