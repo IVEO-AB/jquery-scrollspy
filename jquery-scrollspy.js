@@ -26,6 +26,7 @@
 
             return this.each(function() {
 
+                // cache the jQuery object
                 var $container = $(options.container),
 
                     // cache this
@@ -50,7 +51,7 @@
                             top: $this.scrollTop(),
                             left: $this.scrollLeft()
                         },
-                        xy = (mode.toUpperCase() === 'VERTICAL') ? position.top + buffer : position.left + buffer,
+                        xAndY = (mode.toUpperCase() === 'VERTICAL') ? position.top + buffer : position.left + buffer,
                         max = $.isFunction(options.max) ? options.max() : options.max,
                         min = $.isFunction(options.min) ? options.min() : options.min;
 
@@ -59,7 +60,7 @@
                     }
 
                     // if we have reached the minimum bound, though are below the max
-                    if (xy >= min && xy <= max) {
+                    if (xAndY >= min && xAndY <= max) {
 
                         // trigger the 'scrollEnter' event
                         if (!inside) {
