@@ -34,11 +34,16 @@
 
                     // cache the jQuery object
                     $element = $(self),
+
                     buffer = options.buffer,
+
                     enters = 0,
+
                     inside = false,
-                    leaves = 0,
-                    mode = options.mode;
+
+                    isVertical = options.mode.toUpperCase() === 'VERTICAL',
+
+                    leaves = 0;
 
 
                 // create a scroll listener for the container
@@ -51,12 +56,15 @@
                             top: $this.scrollTop(),
                             left: $this.scrollLeft()
                         },
-                        xAndY = (mode.toUpperCase() === 'VERTICAL') ? position.top + buffer : position.left + buffer,
+
+                        xAndY = isVertical ? position.top + buffer : position.left + buffer,
+
                         max = $.isFunction(options.max) ? options.max() : options.max,
+
                         min = $.isFunction(options.min) ? options.min() : options.min;
 
                     if (max === 0) {
-                        max = (mode.toUpperCase() === 'VERTICAL') ? $container.height() : $container.outerWidth() + $element.outerWidth();
+                        max = isVertical ? $container.height() : $container.outerWidth() + $element.outerWidth();
                     }
 
                     // if we have reached the minimum bound, though are below the max
