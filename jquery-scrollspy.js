@@ -81,6 +81,7 @@
                                 position: position
                             });
 
+                            // call the 'onEnter' function
                             if ($.isFunction(options.onEnter)) {
                                 options.onEnter(self, position);
                             }
@@ -95,6 +96,7 @@
                             leaves: leaves
                         });
 
+                        // call the 'onTick' function
                         if ($.isFunction(options.onTick)) {
                             options.onTick(self, position, inside, enters, leaves);
                         }
@@ -102,6 +104,7 @@
                     } else {
 
                         if (inside) {
+
                             inside = false;
                             leaves++;
 
@@ -111,6 +114,7 @@
                                 leaves: leaves
                             });
 
+                            // call the 'onLeave' function
                             if ($.isFunction(options.onLeave)) {
                                 options.onLeave(self, position);
                             }
