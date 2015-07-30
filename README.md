@@ -28,7 +28,7 @@ Or clone from:
 ## Usage:
 
 1. Insert the necessary elements in your document's `<head>` section, e.g.:
-   
+
         <script type='text/javascript' src='/javascripts/jquery.scrollspy.js'></script>
 
  Remember to include jquery.scrollspy.js *after* including the main jQuery library.
@@ -36,7 +36,7 @@ Or clone from:
 2. Initialise scrollspy in your document.onload, e.g.:
 
         <script type='text/javascript'>
-	        $(document).ready(function() {
+	        $(function() {
         			$('#sticky-navigation').scrollspy({
     					min: $('#nav').offset().top,
     					onEnter: function(element, position) {
@@ -63,16 +63,16 @@ Options for ScrollSpy include:
 Events for ScrollSpy include:
 
     scrollTick: Fires on each scroll event within the min and max parameters. Receives as parameters:
-    
+
         position: an object with the current X and Y position.
         inside: a Boolean value for whether or not the user is within the min and max parameters
         enters: the number of times the min / max has been entered.
         leaves: the number of times the min / max has been left.
-    
+
     scrollEnter: Fires every time the user enters the min / max zone.
             position: an object with the current X and Y position.
             enters: the number of times the min / max has been entered.
-    
+
     scrollLeave: Fires every time the user leaves the min / max zone.
             position: an object with the current X and Y position.
             leaves: the number of times the min / max has been left.
