@@ -1,0 +1,13 @@
+{
+    "name" : "jquery-scrollspy",
+    "version" : "1.0.0",
+    "license": "MIT",
+    "repository": "https://github.com/sxalexander/jquery-scrollspy",
+    "devDependencies" : {
+        "grunt" :                       "latest",
+        "grunt-contrib-uglify":         "*",
+        "grunt-contrib-jshint":         "*",
+        "grunt-contrib-watch":          "*",
+        "matchdep":                     "*"
+    }
+}
