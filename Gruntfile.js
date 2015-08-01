@@ -22,6 +22,13 @@ module.exports = function(grunt) {
             js: {
                 files: {
                     'jquery-scrollspy.min.js': 'jquery-scrollspy.js',
+                },
+                options: {
+                    compress: {
+                        dead_code: true,
+                        drop_console: true,
+                        unused: true
+                    }
                 }
             }
         },
