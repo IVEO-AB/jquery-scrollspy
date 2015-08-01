@@ -81,6 +81,13 @@ Events for ScrollSpy include:
             position: an object with the current X and Y position.
             leaves: the number of times the min / max has been left.
 
+    scrollLeaveTop: Fires every time the user leaves the top zone.
+            position: an object with the current X and Y position.
+            leaves: the number of times the min / max has been left.
+
+    scrollLeaveBottom: Fires every time the user leaves the bottom zone.
+            position: an object with the current X and Y position.
+            leaves: the number of times the min / max has been left.
 
 ## A note on forking:
 

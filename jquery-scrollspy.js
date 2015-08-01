@@ -19,6 +19,8 @@
                 namespace: 'scrollspy',
                 onEnter: options.onEnter ? options.onEnter : [],
                 onLeave: options.onLeave ? options.onLeave : [],
+                onLeaveTop: options.onLeaveTop ? options.onLeaveTop : [],
+                onLeaveBottom: options.onLeaveBottom ? options.onLeaveBottom : [],
                 onTick: options.onTick ? options.onTick : []
             };
 
@@ -120,6 +122,32 @@
                             // call the 'onLeave' function
                             if ($.isFunction(options.onLeave)) {
                                 options.onLeave(self, position);
+                            }
+
+                            if (xy <= min) {
+                                // trigger the 'scrollLeaveTop' event
+                                $element.trigger('scrollLeaveTop', {
+                                    position: position,
+                                    leaves: leaves
+                                });
+
+                                // call the 'onLeaveTop' function
+                                if ($.isFunction(options.onLeaveTop)) {
+                                    options.onLeaveTop(self, position);
+                                }
+
+                            } else if (xy >= max) {
+                                // trigger the 'scrollLeaveBottom' event
+                                $element.trigger('scrollLeaveBottom', {
+                                    position: position,
+                                    leaves: leaves
+                                });
+
+                                // call the 'onLeaveBottom' function
+                                if ($.isFunction(options.onLeaveBottom)) {
+                                    options.onLeaveBottom(self, position);
+                                }
+
                             }
                         }
 
