@@ -1,6 +1,6 @@
 /*
  * jQuery Scrollspy Plugin
- * Author: @sxalexander
+ * Author: @sxalexander, softwarespot
  * Licensed under the MIT license
  */
 ; (function($, window, document, undefined) {
