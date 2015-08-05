@@ -1,4 +1,4 @@
-/*!
+/*
  * jQuery Scrollspy Plugin
  * Author: @sxalexander
  * Licensed under the MIT license
@@ -24,7 +24,7 @@
                 onTick: options.onTick ? options.onTick : []
             };
 
-            // override the default options with those passed
+            // override the default options with those passed to the plugin
             options = $.extend({}, defaults, options);
 
             // cache the jQuery object
@@ -69,7 +69,10 @@
                         xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
 
                     if (max === 0) {
+
+                        // get the maximum value based on either the height or the outer width
                         max = isVertical ? $container.height() : $container.outerWidth() + $element.outerWidth();
+
                     }
 
                     // if we have reached the minimum bound, though are below the max
