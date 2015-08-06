@@ -127,7 +127,7 @@
                                 options.onLeave(self, position);
                             }
 
-                            if (xy <= min) {
+                            if (xAndY <= min) {
                                 // trigger the 'scrollLeaveTop' event
                                 $element.trigger('scrollLeaveTop', {
                                     position: position,
@@ -139,7 +139,7 @@
                                     options.onLeaveTop(self, position);
                                 }
 
-                            } else if (xy >= max) {
+                            } else if (xAndY >= max) {
                                 // trigger the 'scrollLeaveBottom' event
                                 $element.trigger('scrollLeaveBottom', {
                                     position: position,
