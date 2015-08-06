@@ -34,7 +34,19 @@ module.exports = function(grunt) {
         },
 
         jshint: {
-            all: ['jquery-scrollspy.js']
+            all: ['jquery-scrollspy.js'],
+            options: {
+                curly: true,
+                eqeqeq: true,
+                eqnull: true,
+                notypeof: true,
+                undef: true,
+                browser: true,
+                globals: {
+                  jQuery: true,
+                  '$': true
+                }
+            }
         }
 
     });
