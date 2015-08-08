@@ -1,3 +1,5 @@
+/* global jQuery */
+
 /*
  * jQuery Scrollspy Plugin
  * Author: @sxalexander, softwarespot
