@@ -5,11 +5,11 @@
  * Author: @sxalexander, softwarespot
  * Licensed under the MIT license
  */
-; (function($, window, document, undefined) {
+; (function ($, window, document, undefined) {
 
     $.fn.extend({
 
-        scrollspy: function(options) {
+        scrollspy: function (options) {
 
             // default options for Scollspy
             var defaults = {
@@ -35,7 +35,7 @@
                 // check if the mode is set to VERTICAL/vertical
                 isVertical = options.mode.toUpperCase() === 'VERTICAL';
 
-            return this.each(function() {
+            return this.each(function () {
 
                 // cache this
                 var self = this,
@@ -53,7 +53,7 @@
                     leaves = 0;
 
                 // create a scroll listener for the container
-                $container.on('scroll.' + options.namespace, function() {
+                $container.on('scroll.' + options.namespace, function () {
 
                     // cache the jQuery object
                     var $this = $(this),
