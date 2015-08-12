@@ -1,4 +1,4 @@
-# NOTE: This is a new version scrollspy, which includes a ton of bug fixes and efficiency improvements.
+# NOTE: This is a new version of scrollspy, which includes a ton of bug fixes and efficiency improvements.
 
 # jquery-scrollspy
 
