@@ -11,7 +11,7 @@
 
         scrollspy: function (options) {
 
-            // default options for Scollspy
+            // default options for scrollspy
             var defaults = {
                 buffer: 0,
                 container: window,
@@ -33,7 +33,7 @@
             var $container = $(options.container),
 
                 // check if the mode is set to VERTICAL/vertical
-                isVertical = options.mode.toUpperCase() === 'VERTICAL';
+                isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
 
             return this.each(function () {
 
