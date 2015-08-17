@@ -1,95 +1,141 @@
-# NOTE: This is a new version of scrollspy, which includes a ton of bug fixes and efficiency improvements.
+# NOTE: This is a newest version of ScrollSpy, which includes a ton of bug fixes and efficiency improvements. It's recommended that you use this version for now.
 
-# jquery-scrollspy
+# jQuery-ScrollSpy
 
-An adaptation of the Mootools Scrollspy ( http://davidwalsh.name/mootools-scrollspy ) plugin for jQuery
+An adaptation of the Mootools Scrollspy (http://davidwalsh.name/mootools-scrollspy) plugin for jQuery
 
-(c) 2011 Samuel Alexander (sxalexander@gmail.com)
+(c) 2011 Samuel Alexander (https://github.com/sxalexander/jquery-scrollspy)
+(c) 2015 SoftwareSpot
 
 Released under The MIT License.
 
 ## Description:
 
-scrollspy is a simple jQuery plugin for firing events based on where the user has scrolled to in a page.
-
+ScrollSpy is a simple jQuery plugin for firing events based on where the user has scrolled to in a page.
 
 ## Homepage:
 
-http://github.com/sxalexander/jquery-scrollspy
+https://github.com/softwarespot/jquery-scrollspy
 
 ## Source:
 
 Hosted at GitHub; browse at:
 
-  http://github.com/sxalexander/jquery-scrollspy/tree/master
+  https://github.com/softwarespot/jquery-scrollspy/tree/master
 
 Or clone from:
 
-    git://github.com/sxalexander/jquery-scrollspy.git
+    git://github.com/softwarespot/jquery-scrollspy.git
 
 ## Usage:
 
-1. Insert the necessary elements in your document's `<head>` section, e.g.:
+1. Insert the necessary elements in to your document's `<head>` section, e.g.:
 
-        <script src='/assets/js/jquery.scrollspy.min.js'></script>
+```html
+    <script src="jquery.scrollspy.min.js"></script>
+```
 
- Remember to include jquery.scrollspy.js *after* including the main jQuery library.
+ Remember to include jquery.scrollspy.js *after* you've included the jQuery library.
 
-2. Initialise scrollspy in your document.onload, e.g.:
+2. Initialise ScrollSpy once the DOM has been loaded:
 
-        <script>
-	        $(function() {
-                    var $nav = $('#nav');
+```javascript
+<script>
+    $(function() {
 
-        			$('#sticky-navigation').scrollspy({
-    					min: $nav.offset().top,
-    					onEnter: function(element, position) {
-    						$nav.addClass('fixed');
-    					},
-    					onLeave: function(element, position) {
-    						$nav.removeClass('fixed');
-    					}
-        			});
-        		});
-        </script>
+            var $nav = $('#nav');
+
+            $('#sticky-navigation').scrollspy({
+                min: $nav.offset().top,
+                onEnter: function(element, position) {
+                    $nav.addClass('fixed');
+                },
+                onLeave: function(element, position) {
+                    $nav.removeClass('fixed');
+                }
+            });
+
+        });
+</script>
+```
 
 Check out the /examples for more info !
 
 ## Documentation:
 
-Options for ScrollSpy include:
+ScrollSpy function signature:
+```javascript
+    $('container').scrollspy(options, action)
+```
 
-    min: (defaults to 0) The minimum value of the X or Y coordinate, depending on mode.
-    max: (defaults to 0) The maximum value of the X or Y coordinate, depending on mode.
-    mode: (defaults to 'vertical') Defines whether to listen to X or Y scrolling.
-    container: (defaults to window) The element whose scrolling to listen to.
+Default options for ScrollSpy:
+```javascript
+// default options for ScrollSpy
+var defaults = {
+    // the offset to be applied to the left and top positions of the container
+    buffer: 0,
 
-Events for ScrollSpy include:
+    // the element to apply the 'scrolling' event to (default window)
+    container: window,
 
-    scrollTick: Fires on each scroll event within the min and max parameters. Receives as parameters:
+    // the maximum value of the X or Y coordinate, depending on mode the selected
+    max: 0,
 
+    // the maximum value of the X or Y coordinate, depending on mode the selected
+    min: 0,
+
+    // whether to listen to the X (horizontal) or Y (vertical) scrolling
+    mode: 'vertical',
+
+    // namespace to append to the 'scroll' event
+    namespace: 'scrollspy',
+
+    // call the following callback function every time the user enters the min / max zone
+    onEnter: null,
+
+    // call the following callback function every time the user leaves the min / max zone
+    onLeave: null,
+
+    // call the following callback function every time the user leaves the top zone
+    onLeaveTop: null,
+
+    // call the following callback function every time the user leaves the bottom zone
+    onLeaveBottom: null,
+
+    // call the following callback function on each scroll event within the min and max parameters
+    onTick: null
+};
+```
+
+Events are triggered by ScrollSpy are:
+
+    scrollTick: Fires on each scroll event within the min and max parameters:
         position: an object with the current X and Y position.
         inside: a Boolean value for whether or not the user is within the min and max parameters
         enters: the number of times the min / max has been entered.
         leaves: the number of times the min / max has been left.
 
-    scrollEnter: Fires every time the user enters the min / max zone.
+    scrollEnter: Fires every time the user enters the min / max zone:
             position: an object with the current X and Y position.
             enters: the number of times the min / max has been entered.
 
-    scrollLeave: Fires every time the user leaves the min / max zone.
+    scrollLeave: Fires every time the user leaves the min / max zone:
             position: an object with the current X and Y position.
             leaves: the number of times the min / max has been left.
 
-    scrollLeaveTop: Fires every time the user leaves the top zone.
+    scrollLeaveTop: Fires every time the user leaves the top zone:
             position: an object with the current X and Y position.
             leaves: the number of times the min / max has been left.
 
-    scrollLeaveBottom: Fires every time the user leaves the bottom zone.
+    scrollLeaveBottom: Fires every time the user leaves the bottom zone:
             position: an object with the current X and Y position.
             leaves: the number of times the min / max has been left.
 
-## A note on forking:
+### Tidy up
+
+To destroy ScrollSpy for a particular container, simple pass 'destroy' as the action parameter. The only options that will be honoured are `container` and `namespace`.
+
+## A note about forking:
 
 By forking this project you hereby grant permission for any commits to your fork to be
 merged back into this repository and, with attribution, be released under the terms of
