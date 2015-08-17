@@ -7,6 +7,8 @@
  */
 ; (function ($, window, document, undefined) {
 
+    // Plugin Logic
+
     $.fn.extend({
 
         scrollspy: function (options, action) {
@@ -30,15 +32,18 @@
             options = $.extend({}, defaults, options);
 
             // cache the jQuery object
-            var $container = $(options.container),
+            var $container = $(options.container);
 
-                // check if the mode is set to VERTICAL/vertical
-                isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
-
+            // check if the action is set to DESTROY/destroy
             if (typeof action === 'string' && action.toUpperCase() === 'DESTROY') {
+
               $container.off('scroll.' + options.namespace);
               return;
+
             }
+
+            // check if the mode is set to VERTICAL/vertical
+            var isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
 
             return this.each(function () {
 
