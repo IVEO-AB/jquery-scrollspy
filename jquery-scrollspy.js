@@ -35,7 +35,7 @@
                 // check if the mode is set to VERTICAL/vertical
                 isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
 
-            if (action === 'destroy') {
+            if (typeof action === 'string' && action.toUpperCase() === 'DESTROY') {
               $container.off('scroll.' + options.namespace);
               return;
             }
