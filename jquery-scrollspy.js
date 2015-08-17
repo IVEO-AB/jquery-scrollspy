@@ -13,47 +13,11 @@
 
         scrollspy: function (options, action) {
 
-            // default options for ScrollSpy
-            var defaults = {
-                // the offset to be applied to the left and top positions of the container
-                buffer: 0,
-
-                // the element to apply the 'scrolling' event to (default window)
-                container: window,
-
-                // the maximum value of the X or Y coordinate, depending on mode the selected
-                max: 0,
-
-                // the maximum value of the X or Y coordinate, depending on mode the selected
-                min: 0,
-
-                // whether to listen to the X (horizontal) or Y (vertical) scrolling
-                mode: 'vertical',
-
-                // namespace to append to the 'scroll' event
-                namespace: 'scrollspy',
-
-                // call the following callback function every time the user enters the min / max zone
-                onEnter: null,
-
-                // call the following callback function every time the user leaves the min / max zone
-                onLeave: null,
-
-                // call the following callback function every time the user leaves the top zone
-                onLeaveTop: null,
-
-                // call the following callback function every time the user leaves the bottom zone
-                onLeaveBottom: null,
-
-                // call the following callback function on each scroll event within the min and max parameters
-                onTick: null
-            };
-
             // override the default options with those passed to the plugin
-            options = $.extend({}, defaults, options);
+            options = $.extend({}, _defaults, options);
 
             // sanitize the following option with the default value if the predicate fails
-            sanitizeOption(options, defaults, 'container', isObject);
+            sanitizeOption(options, _defaults, 'container', isObject);
 
             // cache the jQuery object
             var $container = $(options.container);
@@ -65,24 +29,38 @@
 
             }
 
-            // sanitize the following options with the default values if the predicates fails
-            sanitizeOption(options, defaults, 'buffer', $.isNumeric);
-            sanitizeOption(options, defaults, 'max', $.isNumeric);
-            sanitizeOption(options, defaults, 'min', $.isNumeric);
-
-            sanitizeOption(options, defaults, 'namespace', isString);
-
-            sanitizeOption(options, defaults, 'onEnter', $.isFunction);
-            sanitizeOption(options, defaults, 'onLeave', $.isFunction);
-            sanitizeOption(options, defaults, 'onLeaveTop', $.isFunction);
-            sanitizeOption(options, defaults, 'onLeaveBottom', $.isFunction);
-            sanitizeOption(options, defaults, 'onTick', $.isFunction);
+            // sanitize the following option with the default value if the predicate fails
+            sanitizeOption(options, _defaults, 'namespace', isString);
 
             // check if the action is set to DESTROY/destroy
             if (typeof action === 'string' && action.toUpperCase() === 'DESTROY') {
 
               $container.off('scroll.' + options.namespace);
               return this;
+
+            }
+
+            // sanitize the following options with the default values if the predicates fails
+            sanitizeOption(options, _defaults, 'buffer', $.isNumeric);
+            sanitizeOption(options, _defaults, 'max', $.isNumeric);
+            sanitizeOption(options, _defaults, 'min', $.isNumeric);
+
+            // callbacks
+            sanitizeOption(options, _defaults, 'onEnter', $.isFunction);
+            sanitizeOption(options, _defaults, 'onLeave', $.isFunction);
+            sanitizeOption(options, _defaults, 'onLeaveTop', $.isFunction);
+            sanitizeOption(options, _defaults, 'onLeaveBottom', $.isFunction);
+            sanitizeOption(options, _defaults, 'onTick', $.isFunction);
+
+            if ($.isFunction(options.max)) {
+
+                options.max = options.max();
+
+            }
+
+            if ($.isFunction(options.min)) {
+
+                options.min = options.min();
 
             }
 
@@ -118,9 +96,9 @@
                             left: $this.scrollLeft()
                         },
 
-                        max = $.isFunction(options.max) ? options.max() : options.max,
+                        max = options.max,
 
-                        min = $.isFunction(options.min) ? options.min() : options.min,
+                        min = options.min,
 
                         xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
 
@@ -217,6 +195,45 @@
         }
 
     });
+
+    // Fields (Private)
+
+    // Defaults
+
+    var _defaults = {
+        // the offset to be applied to the left and top positions of the container
+        buffer: 0,
+
+        // the element to apply the 'scrolling' event to (default window)
+        container: window,
+
+        // the maximum value of the X or Y coordinate, depending on mode the selected
+        max: 0,
+
+        // the maximum value of the X or Y coordinate, depending on mode the selected
+        min: 0,
+
+        // whether to listen to the X (horizontal) or Y (vertical) scrolling
+        mode: 'vertical',
+
+        // namespace to append to the 'scroll' event
+        namespace: 'scrollspy',
+
+        // call the following callback function every time the user enters the min / max zone
+        onEnter: null,
+
+        // call the following callback function every time the user leaves the min / max zone
+        onLeave: null,
+
+        // call the following callback function every time the user leaves the top zone
+        onLeaveTop: null,
+
+        // call the following callback function every time the user leaves the bottom zone
+        onLeaveBottom: null,
+
+        // call the following callback function on each scroll event within the min and max parameters
+        onTick: null
+    };
 
     // Methods (Private)
 
