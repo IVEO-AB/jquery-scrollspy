@@ -5,6 +5,7 @@
 An adaptation of the Mootools Scrollspy (http://davidwalsh.name/mootools-scrollspy) plugin for jQuery
 
 (c) 2011 Samuel Alexander (https://github.com/sxalexander/jquery-scrollspy)
+
 (c) 2015 SoftwareSpot
 
 Released under The MIT License.
@@ -32,10 +33,9 @@ Or clone from:
 1. Insert the necessary elements in to your document's `<head>` section, e.g.:
 
 ```html
+    <script src="jquery.min.js"></script>
     <script src="jquery.scrollspy.min.js"></script>
 ```
-
- Remember to include jquery.scrollspy.js *after* you've included the jQuery library.
 
 2. Initialise ScrollSpy once the DOM has been loaded:
 
