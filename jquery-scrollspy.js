@@ -1,7 +1,7 @@
 /* global jQuery */
 
 /*
- * jQuery Scrollspy Plugin
+ * jQuery ScrollSpy Plugin
  * Author: @sxalexander, softwarespot
  * Licensed under the MIT license
  */
@@ -13,32 +13,76 @@
 
         scrollspy: function (options, action) {
 
-            // default options for scrollspy
+            // default options for ScrollSpy
             var defaults = {
+                // the offset to be applied to the left and top positions of the container
                 buffer: 0,
+
+                // the element to apply the 'scrolling' event to (default window)
                 container: window,
+
+                // the maximum value of the X or Y coordinate, depending on mode the selected
                 max: 0,
+
+                // the maximum value of the X or Y coordinate, depending on mode the selected
                 min: 0,
+
+                // whether to listen to the X (horizontal) or Y (vertical) scrolling
                 mode: 'vertical',
+
+                // namespace to append to the 'scroll' event
                 namespace: 'scrollspy',
-                onEnter: options.onEnter ? options.onEnter : [],
-                onLeave: options.onLeave ? options.onLeave : [],
-                onLeaveTop: options.onLeaveTop ? options.onLeaveTop : [],
-                onLeaveBottom: options.onLeaveBottom ? options.onLeaveBottom : [],
-                onTick: options.onTick ? options.onTick : []
+
+                // call the following callback function every time the user enters the min / max zone
+                onEnter: null,
+
+                // call the following callback function every time the user leaves the min / max zone
+                onLeave: null,
+
+                // call the following callback function every time the user leaves the top zone
+                onLeaveTop: null,
+
+                // call the following callback function every time the user leaves the bottom zone
+                onLeaveBottom: null,
+
+                // call the following callback function on each scroll event within the min and max parameters
+                onTick: null
             };
 
             // override the default options with those passed to the plugin
             options = $.extend({}, defaults, options);
 
+            // sanitize the following option with the default value if the predicate fails
+            sanitizeOption(options, defaults, 'container', isObject);
+
             // cache the jQuery object
             var $container = $(options.container);
+
+            // check if it's a valid jQuery selector
+            if ($container.length === 0) {
+
+                return this;
+
+            }
+
+            // sanitize the following options with the default values if the predicates fails
+            sanitizeOption(options, defaults, 'buffer', $.isNumeric);
+            sanitizeOption(options, defaults, 'max', $.isNumeric);
+            sanitizeOption(options, defaults, 'min', $.isNumeric);
+
+            sanitizeOption(options, defaults, 'namespace', isString);
+
+            sanitizeOption(options, defaults, 'onEnter', $.isFunction);
+            sanitizeOption(options, defaults, 'onLeave', $.isFunction);
+            sanitizeOption(options, defaults, 'onLeaveTop', $.isFunction);
+            sanitizeOption(options, defaults, 'onLeaveBottom', $.isFunction);
+            sanitizeOption(options, defaults, 'onTick', $.isFunction);
 
             // check if the action is set to DESTROY/destroy
             if (typeof action === 'string' && action.toUpperCase() === 'DESTROY') {
 
               $container.off('scroll.' + options.namespace);
-              return;
+              return this;
 
             }
 
@@ -102,7 +146,7 @@
                             });
 
                             // call the 'onEnter' function
-                            if ($.isFunction(options.onEnter)) {
+                            if (options.onEnter !== null) {
                                 options.onEnter(self, position);
                             }
 
@@ -117,7 +161,7 @@
                         });
 
                         // call the 'onTick' function
-                        if ($.isFunction(options.onTick)) {
+                        if (options.onTick !== null) {
                             options.onTick(self, position, inside, enters, leaves);
                         }
 
@@ -135,7 +179,7 @@
                             });
 
                             // call the 'onLeave' function
-                            if ($.isFunction(options.onLeave)) {
+                            if (options.onLeave !== null) {
                                 options.onLeave(self, position);
                             }
 
@@ -147,7 +191,7 @@
                                 });
 
                                 // call the 'onLeaveTop' function
-                                if ($.isFunction(options.onLeaveTop)) {
+                                if (options.onLeaveTop !== null) {
                                     options.onLeaveTop(self, position);
                                 }
 
@@ -159,7 +203,7 @@
                                 });
 
                                 // call the 'onLeaveBottom' function
-                                if ($.isFunction(options.onLeaveBottom)) {
+                                if (options.onLeaveBottom !== null) {
                                     options.onLeaveBottom(self, position);
                                 }
 
@@ -173,6 +217,32 @@
         }
 
     });
+
+    // Methods (Private)
+
+    // check if a value is an object datatype
+    var isObject = function (value) {
+
+        return $.type(value) === 'object';
+
+    };
+
+    // check if a value is a string datatype with a length greater than zero when whitespace is stripped
+    var isString = function (value) {
+
+        return $.type(value) === 'string' && value.trim().length > 0;
+
+    };
+
+    // check if an option is correctly formatted using a predicate; otherwise, return the default value
+    var sanitizeOption = function (options, defaults, property, predicate) {
+
+        // set the property to the default value if the predicate returned false
+        if (!predicate(options[property])) {
+            options[property] = defaults[property];
+        }
+
+    };
 
 
 })(jQuery, window, document);
