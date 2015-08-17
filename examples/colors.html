@@ -55,8 +55,7 @@
                     <div id="black" class="color">
                         <h2>The Black Team</h2>
                     </div>
-                    <div class="color">
-                        <!--Display that the black color is displayed-->
+                    <div id="white" class="color">
                     </div>
                 </div>
             </div>
@@ -83,11 +82,15 @@
                         min: position.top,
                         max: position.top + $this.height(),
                         onEnter: function(element, position) {
+
                             $('body').css('background-color', element.id);
                             console.log('Entering ' + element.id);
+
                         },
                         onLeave: function(element, position) {
+
                             console.log('Leaving ' + element.id);
+
                         }
                     });
 
