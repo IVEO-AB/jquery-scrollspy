@@ -9,7 +9,7 @@
 
     $.fn.extend({
 
-        scrollspy: function (options) {
+        scrollspy: function (options, action) {
 
             // default options for scrollspy
             var defaults = {
@@ -34,6 +34,11 @@
 
                 // check if the mode is set to VERTICAL/vertical
                 isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
+
+            if (action === 'destroy') {
+              $container.off('scroll.' + options.namespace);
+              return;
+            }
 
             return this.each(function () {
 

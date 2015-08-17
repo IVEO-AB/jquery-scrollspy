@@ -1,13 +1,17 @@
 {
-    "name" : "jquery-scrollspy",
-    "version" : "1.0.0",
-    "license": "MIT",
-    "repository": "https://github.com/sxalexander/jquery-scrollspy",
-    "devDependencies" : {
-        "grunt" :                       "latest",
-        "grunt-contrib-uglify":         "*",
-        "grunt-contrib-jshint":         "*",
-        "grunt-contrib-watch":          "*",
-        "matchdep":                     "*"
-    }
+  "name": "jquery-scrollspy",
+  "version": "1.0.0",
+  "license": "MIT",
+  "repository": "https://github.com/sxalexander/jquery-scrollspy",
+  "scripts": {
+    "test": "node test/memory-leak.js"
+  },
+  "devDependencies": {
+    "drool": "^0.2.1",
+    "grunt": "latest",
+    "grunt-contrib-jshint": "*",
+    "grunt-contrib-uglify": "*",
+    "grunt-contrib-watch": "*",
+    "matchdep": "*"
+  }
 }
