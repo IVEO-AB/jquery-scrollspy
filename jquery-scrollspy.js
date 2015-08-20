@@ -13,15 +13,16 @@
 
         scrollspy: function (options, action) {
 
-            // If the options parameter is a string, then assume it's an 'action'
+            // If the options parameter is a string, then assume it's an 'action', therefore swap the parameters around
             if (isString(options)) {
+
+                var tempOptions = action;
 
                 // Set the action as the option parameter
                 action = options;
 
-                // Set to null
-                options = null;
-
+                // Set to be the reference action pointed to
+                options = tempOptions;
             }
 
             // override the default options with those passed to the plugin
