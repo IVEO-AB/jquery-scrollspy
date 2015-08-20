@@ -108,6 +108,8 @@
                             left: $this.scrollLeft()
                         },
 
+                        containerHeight = $container.height(),
+
                         max = options.max,
 
                         min = options.min,
@@ -117,7 +119,7 @@
                     if (max === 0) {
 
                         // get the maximum value based on either the height or the outer width
-                        max = isVertical ? $container.height() : $container.outerWidth() + $element.outerWidth();
+                        max = isVertical ? containerHeight : $container.outerWidth() + $element.outerWidth();
 
                     }
 
@@ -174,6 +176,7 @@
                             }
 
                             if (xAndY <= min) {
+
                                 // trigger the 'scrollLeaveTop' event
                                 $element.trigger('scrollLeaveTop', {
                                     position: position,
@@ -186,6 +189,7 @@
                                 }
 
                             } else if (xAndY >= max) {
+
                                 // trigger the 'scrollLeaveBottom' event
                                 $element.trigger('scrollLeaveBottom', {
                                     position: position,
@@ -198,6 +202,28 @@
                                 }
 
                             }
+                        } else {
+
+                            // Idea taken from: http://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
+                            var containerScrollTop = $container.scrollTop(),
+
+                                // Get the element height
+                                elementHeight = $element.height(),
+
+                                // Get the element offset
+                                elementOffsetTop = $element.offset().top;
+
+                             if ((elementOffsetTop < (containerHeight + containerScrollTop)) && (elementOffsetTop > (containerScrollTop - elementHeight))) {
+                                // trigger the 'scrollView' event
+                                $element.trigger('scrollView', {
+                                    position: position
+                                });
+
+                                // call the 'onView' function
+                                if (options.onView !== null) {
+                                    options.onView(self, position);
+                                }
+                             }
                         }
 
                     }
@@ -244,7 +270,10 @@
         onLeaveBottom: null,
 
         // call the following callback function on each scroll event within the min and max parameters
-        onTick: null
+        onTick: null,
+
+        // call the following callback function on each scroll event when the element is in view
+        onView: null
     };
 
     // Methods (Private)
