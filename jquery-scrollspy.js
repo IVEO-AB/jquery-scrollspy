@@ -13,6 +13,17 @@
 
         scrollspy: function (options, action) {
 
+            // If the options parameter is a string, then assume it's an 'action'
+            if (isString(options)) {
+
+                // Set the action as the option parameter
+                action = options;
+
+                // Set to null
+                options = null;
+
+            }
+
             // override the default options with those passed to the plugin
             options = $.extend({}, _defaults, options);
 
@@ -33,7 +44,7 @@
             sanitizeOption(options, _defaults, 'namespace', isString);
 
             // check if the action is set to DESTROY/destroy
-            if (typeof action === 'string' && action.toUpperCase() === 'DESTROY') {
+            if (isString(action) && action.toUpperCase() === 'DESTROY') {
 
               $container.off('scroll.' + options.namespace);
               return this;
