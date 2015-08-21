@@ -272,7 +272,7 @@
         // call the following callback function on each scroll event within the min and max parameters
         onTick: null,
 
-        // call the following callback function on each scroll event when the element is in view
+        // call the following callback function on each scroll event when the element is inside the viewable view port
         onView: null
     };
 

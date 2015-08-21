@@ -103,7 +103,10 @@ var defaults = {
     onLeaveBottom: null,
 
     // call the following callback function on each scroll event within the min and max parameters
-    onTick: null
+    onTick: null,
+
+    // call the following callback function on each scroll event when the element is inside the viewable view port
+    onView: null
 };
 ```
 
@@ -128,6 +131,10 @@ Events are triggered by ScrollSpy are:
             leaves: the number of times the min / max has been left.
 
     scrollLeaveBottom: Fires every time the user leaves the bottom zone:
+            position: an object with the current X and Y position.
+            leaves: the number of times the min / max has been left.
+
+    scrollView: Fires every time the element is inside the viewable view port:
             position: an object with the current X and Y position.
             leaves: the number of times the min / max has been left.
 
