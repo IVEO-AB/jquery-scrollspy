@@ -7,11 +7,10 @@
     "test": "node test/memory-leak.js"
   },
   "devDependencies": {
-    "drool": "^0.2.1",
-    "grunt": "latest",
-    "grunt-contrib-jshint": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "matchdep": "*"
+    "gulp":        "~3.9.0",
+    "gulp-uglify": "~1.2.0",
+    "gulp-jshint": "~1.11.2",
+    "gulp-rename": "~1.2.2",
+    "del":         "~1.2.1"
   }
 }
