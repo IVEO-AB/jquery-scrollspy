@@ -32,7 +32,9 @@ gulp.task('uglify', ['clean'], function () {
                 unused: true
             }
         }))
-        .pipe(rename('jquery-scrollspy.min.js'))
+        .pipe(rename({
+            suffix: '.min'
+        }))
         .pipe(gulp.dest('./'));
 });
 
