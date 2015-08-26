@@ -150,7 +150,7 @@ the MIT License.
 
 ## Contribute
 
-To contribute to the project, you will first need to install [gulp](gulpjs.com) globally on your system. Once complete change the directory to the plugin and run the following command:
+To contribute to the project, you will first need to install [gulp](gulpjs.com) globally on your system. Once complete change the working directory to the plugin and run the following command:
 
 ```shell
     npm install
