@@ -47,8 +47,8 @@
             // check if the action is set to DESTROY/destroy
             if (isString(action) && action.toUpperCase() === 'DESTROY') {
 
-              $container.off('scroll.' + options.namespace);
-              return this;
+                $container.off('scroll.' + options.namespace);
+                return this;
 
             }
 
@@ -82,39 +82,39 @@
             return this.each(function () {
 
                 // cache this
-                var self = this,
+                var self = this;
 
-                    // cache the jQuery object
-                    $element = $(self),
+                // cache the jQuery object
+                var $element = $(self);
 
-                    // count the number of times a container is entered
-                    enters = 0,
+                // count the number of times a container is entered
+                var enters = 0;
 
-                    // determine if the scroll is with inside the container
-                    inside = false,
+                // determine if the scroll is with inside the container
+                var inside = false;
 
-                    // count the number of times a container is left
-                    leaves = 0;
+                // count the number of times a container is left
+                var leaves = 0;
 
                 // create a scroll listener for the container
                 $container.on('scroll.' + options.namespace, function () {
 
                     // cache the jQuery object
-                    var $this = $(this),
+                    var $this = $(this);
 
-                        // create a position object literal
-                        position = {
-                            top: $this.scrollTop(),
-                            left: $this.scrollLeft()
-                        },
+                    // create a position object literal
+                    var position = {
+                        top: $this.scrollTop(),
+                        left: $this.scrollLeft()
+                    };
 
-                        containerHeight = $container.height(),
+                    var containerHeight = $container.height();
 
-                        max = options.max,
+                    var max = options.max;
 
-                        min = options.min,
+                    var min = options.min;
 
-                        xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
+                    var xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
 
                     if (max === 0) {
 
@@ -205,15 +205,15 @@
                         } else {
 
                             // Idea taken from: http://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
-                            var containerScrollTop = $container.scrollTop(),
+                            var containerScrollTop = $container.scrollTop();
 
-                                // Get the element height
-                                elementHeight = $element.height(),
+                            // Get the element height
+                            var elementHeight = $element.height();
 
-                                // Get the element offset
-                                elementOffsetTop = $element.offset().top;
+                            // Get the element offset
+                            var elementOffsetTop = $element.offset().top;
 
-                             if ((elementOffsetTop < (containerHeight + containerScrollTop)) && (elementOffsetTop > (containerScrollTop - elementHeight))) {
+                            if ((elementOffsetTop < (containerHeight + containerScrollTop)) && (elementOffsetTop > (containerScrollTop - elementHeight))) {
                                 // trigger the 'scrollView' event
                                 $element.trigger('scrollView', {
                                     position: position
@@ -223,7 +223,7 @@
                                 if (options.onView !== null) {
                                     options.onView(self, position);
                                 }
-                             }
+                            }
                         }
 
                     }
@@ -279,28 +279,29 @@
     // Methods (Private)
 
     // check if a value is an object datatype
-    var isObject = function (value) {
+    function isObject(value) {
 
         return $.type(value) === 'object';
 
-    };
+    }
 
     // check if a value is a string datatype with a length greater than zero when whitespace is stripped
-    var isString = function (value) {
+    function isString(value) {
 
-        return $.type(value) === 'string' && value.trim().length > 0;
+        return $.type(value) === 'string' && value.trim()
+            .length > 0;
 
-    };
+    }
 
     // check if an option is correctly formatted using a predicate; otherwise, return the default value
-    var sanitizeOption = function (options, defaults, property, predicate) {
+    function sanitizeOption(options, defaults, property, predicate) {
 
         // set the property to the default value if the predicate returned false
         if (!predicate(options[property])) {
             options[property] = defaults[property];
         }
 
-    };
+    }
 
 
 })(jQuery, window, document);
