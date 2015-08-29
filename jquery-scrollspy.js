@@ -5,7 +5,8 @@
  * Author: @sxalexander, softwarespot
  * Licensed under the MIT license
  */
-; (function ($, window, document, undefined) {
+; // jshint ignore:line
+(function ($, window, document, undefined) {
 
     // Plugin Logic
 
