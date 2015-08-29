@@ -82,10 +82,10 @@
             return this.each(function () {
 
                 // cache this
-                var self = this;
+                var _this = this;
 
                 // cache the jQuery object
-                var $element = $(self);
+                var $element = $(this);
 
                 // count the number of times a container is entered
                 var enters = 0;
@@ -139,7 +139,7 @@
 
                             // call the 'onEnter' function
                             if (options.onEnter !== null) {
-                                options.onEnter(self, position);
+                                options.onEnter(_this, position);
                             }
 
                         }
@@ -154,7 +154,7 @@
 
                         // call the 'onTick' function
                         if (options.onTick !== null) {
-                            options.onTick(self, position, inside, enters, leaves);
+                            options.onTick(_this, position, inside, enters, leaves);
                         }
 
                     } else {
@@ -172,7 +172,7 @@
 
                             // call the 'onLeave' function
                             if (options.onLeave !== null) {
-                                options.onLeave(self, position);
+                                options.onLeave(_this, position);
                             }
 
                             if (xAndY <= min) {
@@ -185,7 +185,7 @@
 
                                 // call the 'onLeaveTop' function
                                 if (options.onLeaveTop !== null) {
-                                    options.onLeaveTop(self, position);
+                                    options.onLeaveTop(_this, position);
                                 }
 
                             } else if (xAndY >= max) {
@@ -198,7 +198,7 @@
 
                                 // call the 'onLeaveBottom' function
                                 if (options.onLeaveBottom !== null) {
-                                    options.onLeaveBottom(self, position);
+                                    options.onLeaveBottom(_this, position);
                                 }
 
                             }
@@ -221,7 +221,7 @@
 
                                 // call the 'onView' function
                                 if (options.onView !== null) {
-                                    options.onView(self, position);
+                                    options.onView(_this, position);
                                 }
                             }
                         }
