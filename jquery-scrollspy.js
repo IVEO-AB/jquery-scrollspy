@@ -9,12 +9,9 @@
     // Plugin Logic
 
     $.fn.extend({
-
         scrollspy: function (options, action) {
-
             // If the options parameter is a string, then assume it's an 'action', therefore swap the parameters around
             if (isString(options)) {
-
                 var tempOptions = action;
 
                 // Set the action as the option parameter
@@ -35,9 +32,7 @@
 
             // check if it's a valid jQuery selector
             if ($container.length === 0) {
-
                 return this;
-
             }
 
             // sanitize the following option with the default value if the predicate fails
@@ -45,10 +40,8 @@
 
             // check if the action is set to DESTROY/destroy
             if (isString(action) && action.toUpperCase() === 'DESTROY') {
-
                 $container.off('scroll.' + options.namespace);
                 return this;
-
             }
 
             // sanitize the following options with the default values if the predicates fails
@@ -64,22 +57,17 @@
             sanitizeOption(options, _defaults, 'onTick', $.isFunction);
 
             if ($.isFunction(options.max)) {
-
                 options.max = options.max();
-
             }
 
             if ($.isFunction(options.min)) {
-
                 options.min = options.min();
-
             }
 
             // check if the mode is set to VERTICAL/vertical
             var isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
 
             return this.each(function () {
-
                 // cache this
                 var _this = this;
 
@@ -97,7 +85,6 @@
 
                 // create a scroll listener for the container
                 $container.on('scroll.' + options.namespace, function () {
-
                     // cache the jQuery object
                     var $this = $(this);
 
@@ -116,18 +103,14 @@
                     var xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
 
                     if (max === 0) {
-
                         // get the maximum value based on either the height or the outer width
                         max = isVertical ? containerHeight : $container.outerWidth() + $element.outerWidth();
-
                     }
 
                     // if we have reached the minimum bound, though are below the max
                     if (xAndY >= min && xAndY <= max) {
-
                         // trigger the 'scrollEnter' event
                         if (!inside) {
-
                             inside = true;
                             enters++;
 
@@ -140,7 +123,6 @@
                             if (options.onEnter !== null) {
                                 options.onEnter(_this, position);
                             }
-
                         }
 
                         // trigger the 'scrollTick' event
@@ -155,11 +137,8 @@
                         if (options.onTick !== null) {
                             options.onTick(_this, position, inside, enters, leaves);
                         }
-
                     } else {
-
                         if (inside) {
-
                             inside = false;
                             leaves++;
 
@@ -175,7 +154,6 @@
                             }
 
                             if (xAndY <= min) {
-
                                 // trigger the 'scrollLeaveTop' event
                                 $element.trigger('scrollLeaveTop', {
                                     position: position,
@@ -186,9 +164,7 @@
                                 if (options.onLeaveTop !== null) {
                                     options.onLeaveTop(_this, position);
                                 }
-
                             } else if (xAndY >= max) {
-
                                 // trigger the 'scrollLeaveBottom' event
                                 $element.trigger('scrollLeaveBottom', {
                                     position: position,
@@ -199,10 +175,8 @@
                                 if (options.onLeaveBottom !== null) {
                                     options.onLeaveBottom(_this, position);
                                 }
-
                             }
                         } else {
-
                             // Idea taken from: http://stackoverflow.com/questions/5353934/check-if-element-is-visible-on-screen
                             var containerScrollTop = $container.scrollTop();
 
@@ -230,7 +204,6 @@
 
             });
         }
-
     });
 
     // Fields (Private)
@@ -280,27 +253,19 @@
 
     // check if a value is an object datatype
     function isObject(value) {
-
         return $.type(value) === 'object';
-
     }
 
     // check if a value is a string datatype with a length greater than zero when whitespace is stripped
     function isString(value) {
-
         return $.type(value) === 'string' && value.trim().length > 0;
-
     }
 
     // check if an option is correctly formatted using a predicate; otherwise, return the default value
     function sanitizeOption(options, defaults, property, predicate) {
-
         // set the property to the default value if the predicate returned false
         if (!predicate(options[property])) {
             options[property] = defaults[property];
         }
-
     }
-
-
 })(jQuery, window, document);
