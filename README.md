@@ -1,4 +1,4 @@
-# NOTE: This is a newest version of ScrollSpy, which includes a ton of bug fixes and efficiency improvements. It's recommended that you use this version for now.
+# NOTE: This is the lastes version of ScrollSpy, which includes a ton of bug fixes and efficiency improvements. It's recommended that you use this version for now instead of the official (which hasn't been updated in a while).
 
 # jQuery-ScrollSpy
 
