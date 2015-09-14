@@ -4,7 +4,7 @@
  * Licensed under the MIT license
  */
 ; // jshint ignore:line
-(function ($, window, document, undefined) {
+(function (window, $) {
 
     // Plugin Logic
 
@@ -268,4 +268,4 @@
             options[property] = defaults[property];
         }
     }
-})(jQuery, window, document);
+})(this, this.jQuery);
