@@ -2,7 +2,10 @@
   "name": "jquery-scrollspy",
   "version": "1.0.0",
   "license": "MIT",
-  "repository": "https://github.com/softwarespot/jquery-scrollspy",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/softwarespot/jquery-scrollspy.git"
+  },
   "devDependencies": {
     "del": "~1.2.1",
     "gulp": "~3.9.0",
