@@ -67,7 +67,7 @@
             // check if the mode is set to VERTICAL/vertical
             var isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
 
-            return this.each(function () {
+            return this.each(function each() {
                 // cache this
                 var _this = this;
 
@@ -84,7 +84,7 @@
                 var leaves = 0;
 
                 // create a scroll listener for the container
-                $container.on('scroll.' + options.namespace, function () {
+                $container.on('scroll.' + options.namespace, function onScroll() {
                     // cache the jQuery object
                     var $this = $(this);
 
