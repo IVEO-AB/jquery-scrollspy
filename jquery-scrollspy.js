@@ -9,7 +9,7 @@
     // Plugin Logic
 
     $.fn.extend({
-        scrollspy: function (options, action) {
+        scrollspy: function scrollspy(options, action) {
             // If the options parameter is a string, then assume it's an 'action', therefore swap the parameters around
             if (isString(options)) {
                 var tempOptions = action;
