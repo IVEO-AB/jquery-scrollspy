@@ -11,7 +11,7 @@
     $.fn.extend({
         scrollspy: function scrollspy(options, action) {
             // If the options parameter is a string, then assume it's an 'action', therefore swap the parameters around
-            if (isString(options)) {
+            if (_isString(options)) {
                 var tempOptions = action;
 
                 // Set the action as the option parameter
@@ -25,7 +25,7 @@
             options = $.extend({}, _defaults, options);
 
             // sanitize the following option with the default value if the predicate fails
-            sanitizeOption(options, _defaults, 'container', isObject);
+            _sanitizeOption(options, _defaults, 'container', _isObject);
 
             // cache the jQuery object
             var $container = $(options.container);
@@ -36,25 +36,25 @@
             }
 
             // sanitize the following option with the default value if the predicate fails
-            sanitizeOption(options, _defaults, 'namespace', isString);
+            _sanitizeOption(options, _defaults, 'namespace', _isString);
 
             // check if the action is set to DESTROY/destroy
-            if (isString(action) && action.toUpperCase() === 'DESTROY') {
+            if (_isString(action) && action.toUpperCase() === 'DESTROY') {
                 $container.off('scroll.' + options.namespace);
                 return this;
             }
 
             // sanitize the following options with the default values if the predicates fails
-            sanitizeOption(options, _defaults, 'buffer', $.isNumeric);
-            sanitizeOption(options, _defaults, 'max', $.isNumeric);
-            sanitizeOption(options, _defaults, 'min', $.isNumeric);
+            _sanitizeOption(options, _defaults, 'buffer', $.isNumeric);
+            _sanitizeOption(options, _defaults, 'max', $.isNumeric);
+            _sanitizeOption(options, _defaults, 'min', $.isNumeric);
 
             // callbacks
-            sanitizeOption(options, _defaults, 'onEnter', $.isFunction);
-            sanitizeOption(options, _defaults, 'onLeave', $.isFunction);
-            sanitizeOption(options, _defaults, 'onLeaveTop', $.isFunction);
-            sanitizeOption(options, _defaults, 'onLeaveBottom', $.isFunction);
-            sanitizeOption(options, _defaults, 'onTick', $.isFunction);
+            _sanitizeOption(options, _defaults, 'onEnter', $.isFunction);
+            _sanitizeOption(options, _defaults, 'onLeave', $.isFunction);
+            _sanitizeOption(options, _defaults, 'onLeaveTop', $.isFunction);
+            _sanitizeOption(options, _defaults, 'onLeaveBottom', $.isFunction);
+            _sanitizeOption(options, _defaults, 'onTick', $.isFunction);
 
             if ($.isFunction(options.max)) {
                 options.max = options.max();
@@ -252,17 +252,17 @@
     // Methods (Private)
 
     // check if a value is an object datatype
-    function isObject(value) {
+    function _isObject(value) {
         return $.type(value) === 'object';
     }
 
     // check if a value is a string datatype with a length greater than zero when whitespace is stripped
-    function isString(value) {
+    function _isString(value) {
         return $.type(value) === 'string' && value.trim().length > 0;
     }
 
     // check if an option is correctly formatted using a predicate; otherwise, return the default value
-    function sanitizeOption(options, defaults, property, predicate) {
+    function _sanitizeOption(options, defaults, property, predicate) {
         // set the property to the default value if the predicate returned false
         if (!predicate(options[property])) {
             options[property] = defaults[property];
