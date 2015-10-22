@@ -65,7 +65,7 @@
             }
 
             // check if the mode is set to VERTICAL/vertical
-            var isVertical = String(options.mode).toUpperCase() === 'VERTICAL';
+            var isVertical = window.String(options.mode).toUpperCase() === 'VERTICAL';
 
             return this.each(function each() {
                 // cache this
