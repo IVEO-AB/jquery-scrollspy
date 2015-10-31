@@ -4,7 +4,7 @@
  * Licensed under the MIT license
  */
 ; // jshint ignore:line
-(function (window, $) {
+(function jQueryScrollspy(window, $) {
 
     // Plugin Logic
 
@@ -91,7 +91,7 @@
                     // create a position object literal
                     var position = {
                         top: $this.scrollTop(),
-                        left: $this.scrollLeft()
+                        left: $this.scrollLeft(),
                     };
 
                     var containerHeight = $container.height();
@@ -116,7 +116,7 @@
 
                             // trigger the 'scrollEnter' event
                             $element.trigger('scrollEnter', {
-                                position: position
+                                position: position,
                             });
 
                             // call the 'onEnter' function
@@ -130,7 +130,7 @@
                             position: position,
                             inside: inside,
                             enters: enters,
-                            leaves: leaves
+                            leaves: leaves,
                         });
 
                         // call the 'onTick' function
@@ -145,7 +145,7 @@
                             // trigger the 'scrollLeave' event
                             $element.trigger('scrollLeave', {
                                 position: position,
-                                leaves: leaves
+                                leaves: leaves,
                             });
 
                             // call the 'onLeave' function
@@ -157,7 +157,7 @@
                                 // trigger the 'scrollLeaveTop' event
                                 $element.trigger('scrollLeaveTop', {
                                     position: position,
-                                    leaves: leaves
+                                    leaves: leaves,
                                 });
 
                                 // call the 'onLeaveTop' function
@@ -168,7 +168,7 @@
                                 // trigger the 'scrollLeaveBottom' event
                                 $element.trigger('scrollLeaveBottom', {
                                     position: position,
-                                    leaves: leaves
+                                    leaves: leaves,
                                 });
 
                                 // call the 'onLeaveBottom' function
@@ -189,7 +189,7 @@
                             if ((elementOffsetTop < (containerHeight + containerScrollTop)) && (elementOffsetTop > (containerScrollTop - elementHeight))) {
                                 // trigger the 'scrollView' event
                                 $element.trigger('scrollView', {
-                                    position: position
+                                    position: position,
                                 });
 
                                 // call the 'onView' function
@@ -203,7 +203,7 @@
                 });
 
             });
-        }
+        },
     });
 
     // Fields (Private)
@@ -246,7 +246,7 @@
         onTick: null,
 
         // call the following callback function on each scroll event when the element is inside the viewable view port
-        onView: null
+        onView: null,
     };
 
     // Methods (Private)
@@ -268,4 +268,4 @@
             options[property] = defaults[property];
         }
     }
-})(this, this.jQuery);
+})(window, window.jQuery);
