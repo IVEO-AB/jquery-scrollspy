@@ -72,7 +72,7 @@
                 var _this = this;
 
                 // cache the jQuery object
-                var $element = $(this);
+                var $element = $(_this);
 
                 // count the number of times a container is entered
                 var enters = 0;
