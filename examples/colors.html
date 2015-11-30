@@ -55,7 +55,7 @@
                     <div id="black" class="color">
                         <h2>The Black Team</h2>
                     </div>
-                    <div id="white" class="color">
+                    <div id="snow-white" class="color">
                     </div>
                 </div>
             </div>
@@ -65,35 +65,28 @@
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="../jquery-scrollspy.min.js"></script>
         <script>
-            $(function() {
-
+            $(function domReady($) {
                 // for each element with the class 'color'
-                $('.color').each(function() {
-
+                $('.color').each(function eachELement() {
                     // cache the jQuery object
-                    var $this = $(this),
+                    var $this = $(this);
 
-                        position = $(this).position();
+                    var position = $this.position();
 
-                    console.log(position);
-                    console.log('min: ' + position.top + ' / max: ' + parseInt(position.top + $this.height()));
+                    window.console.log(position);
+                    window.console.log('min: ' + position.top + ' / max: ' + window.parseInt(position.top + $this.height()));
 
                     $this.scrollspy({
                         min: position.top,
                         max: position.top + $this.height(),
-                        onEnter: function(element, position) {
-
+                        onEnter: function onEnter(element/*, position*/) {
                             $('body').css('background-color', element.id);
-                            console.log('Entering ' + element.id);
-
+                            window.console.log('Entering ' + element.id);
                         },
-                        onLeave: function(element, position) {
-
-                            console.log('Leaving ' + element.id);
-
+                        onLeave: function onLeave(element/*, position*/) {
+                            window.console.log('Leaving ' + element.id);
                         }
                     });
-
                 });
 
             });
