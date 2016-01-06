@@ -5,7 +5,6 @@
  */
 ; // jshint ignore:line
 (function jQueryScrollspy(window, $) {
-
     // Plugin Logic
 
     $.fn.extend({
@@ -198,10 +197,8 @@
                                 }
                             }
                         }
-
                     }
                 });
-
             });
         },
     });
