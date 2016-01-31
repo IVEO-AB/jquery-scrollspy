@@ -140,16 +140,16 @@
         <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
         <script src="../jquery-scrollspy.min.js"></script>
         <script>
-            $(function() {
+            $(function domReady($) {
                 var $nav = $('nav');
                 $nav.scrollspy({
                     min: $nav.offset().top,
                     onEnter: function(element, position) {
-                        console.log('Scrollspy: Entering the navigation menu');
+                        window.console.log('Scrollspy: Entering the navigation menu');
                         $nav.addClass('fixed');
                     },
                     onLeave: function(element, position) {
-                        console.log('Scrollspy: Leaving the navigation menu');
+                        window.console.log('Scrollspy: Leaving the navigation menu');
                         $nav.removeClass('fixed');
                     }
                 });

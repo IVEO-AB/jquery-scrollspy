@@ -74,7 +74,7 @@
                     var position = $this.position();
 
                     window.console.log(position);
-                    window.console.log('min: ' + position.top + ' / max: ' + window.parseInt(position.top + $this.height()));
+                    window.console.log('min: ' + position.top + ' / max: ' + window.parseInt(position.top + $this.height(), 10));
 
                     $this.scrollspy({
                         min: position.top,
