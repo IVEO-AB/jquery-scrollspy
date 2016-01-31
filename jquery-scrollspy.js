@@ -3,7 +3,6 @@
  * Author: @sxalexander, softwarespot
  * Licensed under the MIT license
  */
-; // jshint ignore:line
 (function jQueryScrollspy(window, $) {
     // Plugin Logic
 
@@ -265,4 +264,4 @@
             options[property] = defaults[property];
         }
     }
-})(window, window.jQuery);
+}(window, window.jQuery));
