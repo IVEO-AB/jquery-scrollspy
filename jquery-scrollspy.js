@@ -44,8 +44,8 @@
 
             // sanitize the following options with the default values if the predicates fails
             _sanitizeOption(options, _defaults, 'buffer', $.isNumeric);
-            _sanitizeOption(options, _defaults, 'max', $.isNumeric);
-            _sanitizeOption(options, _defaults, 'min', $.isNumeric);
+            // _sanitizeOption(options, _defaults, 'max', $.isNumeric);
+            // _sanitizeOption(options, _defaults, 'min', $.isNumeric);
 
             // callbacks
             _sanitizeOption(options, _defaults, 'onEnter', $.isFunction);
@@ -54,13 +54,13 @@
             _sanitizeOption(options, _defaults, 'onLeaveBottom', $.isFunction);
             _sanitizeOption(options, _defaults, 'onTick', $.isFunction);
 
-            if ($.isFunction(options.max)) {
-                options.max = options.max();
-            }
-
-            if ($.isFunction(options.min)) {
-                options.min = options.min();
-            }
+            // if ($.isFunction(options.max)) {
+            //     options.max = options.max();
+            // }
+            //
+            // if ($.isFunction(options.min)) {
+            //     options.min = options.min();
+            // }
 
             // check if the mode is set to VERTICAL/vertical
             var isVertical = window.String(options.mode).toUpperCase() === 'VERTICAL';
@@ -93,10 +93,20 @@
                     };
 
                     var containerHeight = $container.height();
+                    var max;
+                    var min;
 
-                    var max = options.max;
+                    if ($.isFunction(options.max)) {
+                        max = options.max();
+                    } else {
+                        max = options.max;
+                    }
 
-                    var min = options.min;
+                    if ($.isFunction(options.min)) {
+                        min = options.min();
+                    } else {
+                        min = options.min;
+                    }
 
                     var xAndY = isVertical ? position.top + options.buffer : position.left + options.buffer;
 
